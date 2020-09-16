@@ -34,7 +34,7 @@
         <div class="collapse navbar-collapse" id="content-nav">
           <ul class="navbar-nav mr-auto">
             <li class="nav-item active">
-              <a class="nav-link" href="user_register.html"
+              <a class="nav-link" href="user_register"
                 >Cadastrar usuário</a
               >
             </li>
@@ -64,7 +64,7 @@
                 <a type="submit" href="ask" class="btn btn-primary mt-4">
                   Entrar
                 </a>
-                <a type="submit" href="password_forgot.html" class="btn btn-success mt-4">
+                <a type="submit" href="password_forgot" class="btn btn-success mt-4">
                   Esqueci a senha
                 </a>
               </div>
