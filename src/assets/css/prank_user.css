@@ -1,0 +1,57 @@
+ 
+  main.main .div-content {
+    height: 400px;
+    width: 700px;
+    margin: 10px;
+    border-radius: 10px;
+    background-color: rgba(0, 0, 0, 0.4);
+  }
+  
+  main.main .title-box {
+    font-size: 1.4rem;
+    font-weight: 600;
+  }
+  
+  main.main .subtitle-box {
+    font-size: 0.9rem;
+    font-weight: 400;
+  }
+  
+  main.main .div-content-header {
+    height: 20%;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    font-size: 1rem;
+    color: #fff;
+    font-weight: 500;
+  }
+  
+  main.main .div-content-body {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 70%;
+    width: 100%;
+    padding: 20px;
+  }
+  
+  main.main .form-group {
+    width: 85%;
+  }
+  
+  main.main .label-question {
+    margin-bottom: 20px;
+    font-weight: 600;
+    font-size: 1rem;
+    color: #fff;
+  }
+  
+  main.main .button {
+    width: 100%;
+  }
+  
