@@ -4,6 +4,9 @@ main.main .div-content {
   padding: 15px;
   background-color: rgba(0, 0, 0, 0.4);
   border-radius: 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 main.main .form {
