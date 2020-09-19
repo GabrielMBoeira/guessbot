@@ -21,7 +21,7 @@ require_once('template/header.php');
                         <input type="text" class="form-control" id="id_prank" />
                     </div>
                     <div class="div-button">
-                        <a type="submit" class="btn btn-primary mt-2" href="prank_user.html">
+                        <a type="submit" class="btn btn-primary mt-2" href="prank_user">
                             Entrar
                         </a>
                     </div>

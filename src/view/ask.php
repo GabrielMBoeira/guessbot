@@ -13,11 +13,11 @@ require_once('template/header.php');
     <div class="div-content-body">
       <div class="form-group">
         <label for="question" class="label-question">O que você gostaria de saber?</label>
-        <input type="text" class="form-control input-question" id="question" />
+        <input type="text" class="form-control input-question" id="question-write" />
       </div>
       <div class="form-group">
         <label for="question" class="label-question">Resposta:</label>
-        <input type="text" class="form-control input-question" id="question" readonly />
+        <div id="question-read"></div>
         <div class="button d-flex justify-content-end mt-2">
           <button class="btn btn-primary mt-3">Perguntar</button>
         </div>
