@@ -11,5 +11,5 @@ if (is_file($file_path)) {
     require_once('src/view/404.php');
 }
 
-?>
+
 
