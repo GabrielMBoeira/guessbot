@@ -43,6 +43,14 @@
     width: 100%;
     padding: 20px;
   }
+
+  form {
+    height: 90%;
+    width: 90%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
   
   main.main .label-question {
     margin-bottom: 20px;
