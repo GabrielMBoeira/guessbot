@@ -11,8 +11,8 @@ if (isset($_POST['env-question'])) {
     $sql = "INSERT INTO question (question, user, prank_user, status) VALUES ('$question', 'user', 'prank_user', 'status')";
 
     if (mysqli_query($conn, $sql)) {
-        echo "Sucesso";
+      echo "Sucesso";
     }
-
+    $conn->close();
 }
 

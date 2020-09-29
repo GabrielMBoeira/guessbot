@@ -18,7 +18,7 @@ require_once('src/db/connection.php');
                     <input type="text" class="form-control input-question" id="question" name="question"/>
                 </div>
                 <div class="form-group">
-                    <label for="question" class="label-question">Resposta:</label>
+                    <label for="question" class="label-answer">Resposta:</label>
                     <input type="text" class="form-control" id="" />
                     <div class="button d-flex justify-content-end mt-2">
                         <button class="btn btn-primary mt-1" id="submit" name="env-question">Perguntar</button>
@@ -31,7 +31,7 @@ require_once('src/db/connection.php');
 
 <script>
 
-
+    
 
 </script>
 

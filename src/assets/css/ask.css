@@ -58,6 +58,13 @@
     font-size: 1rem;
     color: #fff;
   }
+
+  main.main .label-answer {
+    margin-bottom: 20px;
+    font-weight: 600;
+    font-size: 1rem;
+    color: #fff;
+  }
   
   main.main .button {
     width: 100%;

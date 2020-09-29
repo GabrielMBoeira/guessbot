@@ -40,11 +40,26 @@
     padding: 20px;
   }
   
+  form {
+    height: 90%;
+    width: 90%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
   main.main .form-group {
     width: 85%;
   }
   
   main.main .label-question {
+    margin-bottom: 20px;
+    font-weight: 600;
+    font-size: 1rem;
+    color: #fff;
+  }
+
+  main.main .label-answer {
     margin-bottom: 20px;
     font-weight: 600;
     font-size: 1rem;
