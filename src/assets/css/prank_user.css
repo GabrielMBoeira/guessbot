@@ -59,6 +59,10 @@
     color: #fff;
   }
 
+  main.main .div-question {
+    min-height: 38px;
+  }
+
   main.main .label-answer {
     margin-bottom: 20px;
     font-weight: 600;
