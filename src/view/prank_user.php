@@ -8,7 +8,9 @@ require_once('template/header.php');
 <main class="main">
     <div class="div-content">
 
-        <div class="id" id="id"></div>
+
+        <input class="id" id="id" name="id" type="hidden"></input>
+
 
         <div class="div-content-header bg-danger">
             <div class="title-box">Usuário chave</div>
@@ -42,6 +44,20 @@ require_once('template/header.php');
                 console.log(resposta)
 
                 document.getElementById('question').innerHTML = resposta.question
+                document.getElementById('id').innerHTML = resposta.id_question
+
+                // var obj = {
+                //     id: 1,
+                //     nome: 'Teste'
+                // }
+
+                // for (attr in obj) {
+                //     var el = document.getElementsByName(attr)[0];
+
+                //     if (el) {
+                //         el.value = obj[attr];
+                //     }
+                // }
 
             }
         }
