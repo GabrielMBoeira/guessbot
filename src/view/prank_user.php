@@ -39,36 +39,25 @@ require_once('template/header.php');
         req.onreadystatechange = function() {
             if (req.readyState == 4 && req.status == 200) {
 
-                var resposta = JSON.parse(req.responseText)
 
+                var resposta = JSON.parse(req.responseText);
                 console.log(resposta)
 
                 document.getElementById('question').innerHTML = resposta.question
-                document.getElementById('id').innerHTML = resposta.id_question
+                document.getElementById('question').innerHTML = resposta.question
 
-                // var obj = {
-                //     id: 1,
-                //     nome: 'Teste'
-                // }
-
-                // for (attr in obj) {
-                //     var el = document.getElementsByName(attr)[0];
-
-                //     if (el) {
-                //         el.value = obj[attr];
-                //     }
-                // }
+                
 
             }
         }
-        req.open('POST', 'ajax_question', true);
+        req.open('GET', 'ajax_question', true);
         req.send();
     }
 
 
-    setInterval(function() {
+    // setInterval(function() {
         ajax();
-    }, 1000);
+    // }, 1000);
 </script>
 
 <?php
