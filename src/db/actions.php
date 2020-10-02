@@ -28,4 +28,3 @@ if (isset($_POST['env-answer'])) {
   }
   $conn->close();
 }
-
