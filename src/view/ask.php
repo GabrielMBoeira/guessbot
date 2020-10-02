@@ -19,7 +19,7 @@ require_once('src/db/connection.php');
                 </div>
                 <div class="form-group">
                     <label for="question" class="label-answer">Resposta:</label>
-                    <input type="text" class="form-control" id="" />
+                    <div class="div-answer form-control" id="answer"></div>
                     <div class="button d-flex justify-content-end mt-2">
                         <button class="btn btn-primary mt-1" id="submit" name="env-question">Perguntar</button>
                     </div>
@@ -31,7 +31,24 @@ require_once('src/db/connection.php');
 
 <script>
 
-    
+    function ajax() {
+        var req = new XMLHttpRequest();
+        req.onreadystatechange = function () {
+            if (req.readyState === 4 && req.status === 200) {
+
+                var resposta = JSON.parse(req.responseText);
+                
+                document.getElementById('answer').innerHTML = resposta.answer;
+                
+            }
+        }
+        req.open('GET', 'ajax_answer', true);
+        req.send();
+    }  
+
+    setInterval(() => {
+        ajax();
+    }, 1000);
 
 </script>
 

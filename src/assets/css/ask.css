@@ -65,6 +65,10 @@
     font-size: 1rem;
     color: #fff;
   }
+
+  main.main .div-answer {
+    min-height: 38px;
+  }
   
   main.main .button {
     width: 100%;

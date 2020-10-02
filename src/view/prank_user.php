@@ -7,23 +7,19 @@ require_once('template/header.php');
 
 <main class="main">
     <div class="div-content">
-
-
-        <input class="id" id="id" name="id" type="hidden"></input>
-
-
         <div class="div-content-header bg-danger">
             <div class="title-box">Usuário chave</div>
         </div>
         <div class="div-content-body">
             <form action="src/db/actions.php" method="post">
+                <div id="id"></div>
                 <div class="form-group">
                     <label for="question" class="label-question">O que você gostaria de saber?</label>
                     <div class="div-question form-control" id="question"></div>
                 </div>
                 <div class="form-group">
                     <label for="question form-control" class="label-answer">Resposta:</label>
-                    <input type="text" class="form-control" />
+                    <input type="text" class="form-control" name="answer" />
                     <div class="button d-flex justify-content-end mt-2">
                         <button class="btn btn-danger mt-1" id=" submit" name="env-answer">Responder</button>
                     </div>
@@ -34,19 +30,18 @@ require_once('template/header.php');
 </main>
 
 <script>
+
+
     function ajax() {
         var req = new XMLHttpRequest();
         req.onreadystatechange = function() {
             if (req.readyState == 4 && req.status == 200) {
 
-
                 var resposta = JSON.parse(req.responseText);
-                console.log(resposta)
 
-                document.getElementById('question').innerHTML = resposta.question
+                document.getElementById('id').innerHTML = "<input type='hidden' name='id' value='" + resposta.id_question + "'>"
                 document.getElementById('question').innerHTML = resposta.question
 
-                
 
             }
         }
@@ -54,10 +49,10 @@ require_once('template/header.php');
         req.send();
     }
 
-
-    // setInterval(function() {
-        ajax();
-    // }, 1000);
+    setInterval(function() {
+    ajax();
+    }, 1000);
+    
 </script>
 
 <?php
