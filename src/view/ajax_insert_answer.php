@@ -1,17 +1,16 @@
 <?php
 
-
 require_once('src/db/connection.php');
 require_once('src/config/clear_input.php');
 
-
 header('Content-Type: application/json');
 
-$input_question = $_POST['question'];
+$input_answer = $_POST['answer'];
 
-$question = clear($input_question);
+$answer = clear($input_answer);
 
-$sql = "INSERT INTO question (question, user, prank_user, answer, status) VALUES ('$question', 'user', 'prank_user', 'answer', 'status')";
+$sql = "INSERT INTO question (question, user, prank_user, answer, status) 
+    VALUES ('Aguardando Pergunta...', 'user', 'prank_user', '$answer', 'status')";
 
 $result = mysqli_query($conn, $sql);
 

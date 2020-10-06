@@ -11,7 +11,7 @@ require_once('template/header.php');
             <div class="title-box">Usuário chave</div>
         </div>
         <div class="div-content-body">
-            <form action="src/db/actions.php" method="post">
+            <form id="form2">
                 <div id="id"></div>
                 <div class="form-group">
                     <label for="question" class="label-question">O que você gostaria de saber?</label>
@@ -30,13 +30,6 @@ require_once('template/header.php');
 </main>
 
 <script src="src/js/ajax.js"></script>
-<script>
-
-    // setInterval(function() {
-    // ajax();
-    // }, 1000);
-    
-</script>
 
 <?php
 require_once('template/footer.php');

@@ -1,11 +1,11 @@
-
+//ENVIANDO PERGUNTA PARA O GUESSBOT (VIEW: ASK)
 $('#form1').submit(function (e) {
     e.preventDefault();
 
     var u_question = $('#question1').val();
 
     $.ajax({
-        url: 'ajax_question',
+        url: 'ajax_insert_question',
         method: 'post',
         data: { question: u_question },
     }).done(function (result) {
@@ -13,21 +13,56 @@ $('#form1').submit(function (e) {
     });
 })
 
+
+//RECUPERANDO PERGUNTA (VIEW: PRANKUSER)
 function getQuestion() {
 
     $.ajax({
-        url: 'ajax_answer',
+        url: 'ajax_get_question',
         method: 'GET',
         dataType: 'json'
     }).done(function (result) {
-
         for (var i = 0; i < result.length; i++) {
             $('#question2').html(result[i].question);
         }
-
     });
 }
 
+
+//ENVIANDO RESPOSTA PARA USUARIO (VIEW: PRANKUSER)
+$('#form2').submit(function (e) {
+    e.preventDefault();
+
+    var u_answer = $('#answer2').val();
+
+    $.ajax({
+        url: 'ajax_insert_answer',
+        method: 'POST',
+        data: { answer: u_answer},
+        dataType: 'json'
+    }).done(function (result) {
+        console.log(result)
+    });
+});
+
+
+//RECUPERANDO RESPOSTA (VIEW: ASK)
+function getAnswer() {
+
+    $.ajax({
+        url: 'ajax_get_answer',
+        method: 'GET',
+        dataType:'json'
+    }).done(function (result) {
+        
+        for (var i = 0; i < result.length; i++) {
+            $('#answer1').html(result[i].answer);
+        }
+    });
+}
+
+
 setInterval(() => {
     getQuestion();
+    getAnswer();
 }, 1000);
