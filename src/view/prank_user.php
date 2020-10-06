@@ -15,11 +15,11 @@ require_once('template/header.php');
                 <div id="id"></div>
                 <div class="form-group">
                     <label for="question" class="label-question">O que você gostaria de saber?</label>
-                    <div class="div-question form-control" id="question"></div>
+                    <div class="div-question form-control" id="question2" name="question2"></div>
                 </div>
                 <div class="form-group">
                     <label for="question form-control" class="label-answer">Resposta:</label>
-                    <input type="text" class="form-control" name="answer" />
+                    <input type="text" class="form-control" id="answer2" name="answer2" />
                     <div class="button d-flex justify-content-end mt-2">
                         <button class="btn btn-danger mt-1" id=" submit" name="env-answer">Responder</button>
                     </div>
@@ -29,29 +29,12 @@ require_once('template/header.php');
     </div>
 </main>
 
+<script src="src/js/ajax.js"></script>
 <script>
 
-
-    function ajax() {
-        var req = new XMLHttpRequest();
-        req.onreadystatechange = function() {
-            if (req.readyState == 4 && req.status == 200) {
-
-                var resposta = JSON.parse(req.responseText);
-
-                document.getElementById('id').innerHTML = "<input type='hidden' name='id' value='" + resposta.id_question + "'>"
-                document.getElementById('question').innerHTML = resposta.question
-
-
-            }
-        }
-        req.open('GET', 'ajax_question', true);
-        req.send();
-    }
-
-    setInterval(function() {
-    ajax();
-    }, 1000);
+    // setInterval(function() {
+    // ajax();
+    // }, 1000);
     
 </script>
 

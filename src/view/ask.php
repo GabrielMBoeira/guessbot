@@ -12,16 +12,16 @@ require_once('src/db/connection.php');
             <div class="subtitle-box">Artificial Intelligence</div>
         </div>
         <div class="div-content-body">
-            <form action="src/db/actions.php" method="post">
+            <form id="form1">
                 <div class="form-group">
                     <label for="question" class="label-question">O que você gostaria de saber?</label>
-                    <input type="text" class="form-control input-question" id="question" name="question"/>
+                    <input type="text" class="form-control input-question" id="question1" name="question1"/>
                 </div>
                 <div class="form-group">
                     <label for="question" class="label-answer">Resposta:</label>
-                    <div class="div-answer form-control" id="answer"></div>
+                    <div class="div-answer form-control" id="answer1" name="answer1"></div>
                     <div class="button d-flex justify-content-end mt-2">
-                        <button class="btn btn-primary mt-1" id="submit" name="env-question">Perguntar</button>
+                        <button class="btn btn-primary mt-1" id="submit">Perguntar</button>
                     </div>
                 </div>
             </form>
@@ -29,28 +29,7 @@ require_once('src/db/connection.php');
     </div>
 </main>
 
-<script>
-
-    function ajax() {
-        var req = new XMLHttpRequest();
-        req.onreadystatechange = function () {
-            if (req.readyState === 4 && req.status === 200) {
-
-                var resposta = JSON.parse(req.responseText);
-                
-                document.getElementById('answer').innerHTML = resposta.answer;
-                
-            }
-        }
-        req.open('GET', 'ajax_answer', true);
-        req.send();
-    }  
-
-    setInterval(() => {
-        ajax();
-    }, 1000);
-
-</script>
+<script src="src/js/ajax.js"></script>
 
 <?php
 require_once('template/footer.php');

@@ -1,16 +1,25 @@
 <?php
-header('Content-Type: application/json');
 
 
 require_once('src/db/connection.php');
+require_once('src/config/clear_input.php');
 
-$sql = "SELECT * from question";
+
+header('Content-Type: application/json');
+
+$input_question = $_POST['question'];
+
+$question = clear($input_question);
+
+$sql = "INSERT INTO question (question, user, prank_user, answer, status) VALUES ('$question', 'user', 'prank_user', 'answer', 'status')";
 
 $result = mysqli_query($conn, $sql);
 
-if (mysqli_num_rows($result) > 0) {
-    while ($dados = mysqli_fetch_assoc($result)) {
-        echo json_encode($dados);
-    }
-    
+if ($result) {
+    echo json_encode('Salvo com sucesso');
+} else {
+    echo json_encode('Falha ao salvar');
 }
+
+
+
