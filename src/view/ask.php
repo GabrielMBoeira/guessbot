@@ -30,7 +30,7 @@ require_once('src/db/connection.php');
 </main>
 
 <script src="src/js/ajax.js"></script>
-
+ 
 <?php
 require_once('template/footer.php');
 ?>

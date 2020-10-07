@@ -18,7 +18,7 @@ $('#form1').submit(function (e) {
 function getQuestion() {
 
     $.ajax({
-        url: 'ajax_get_question',
+        url: 'ajax_get_database',
         method: 'GET',
         dataType: 'json'
     }).done(function (result) {
@@ -50,7 +50,7 @@ $('#form2').submit(function (e) {
 function getAnswer() {
 
     $.ajax({
-        url: 'ajax_get_answer',
+        url: 'ajax_get_database',
         method: 'GET',
         dataType:'json'
     }).done(function (result) {
