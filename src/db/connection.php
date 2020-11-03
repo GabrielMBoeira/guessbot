@@ -1,11 +1,5 @@
 <?php
 require_once('env.php');
-//Conexão com o banco de dados
-
-// $servername = "localhost";
-// $username = "root";
-// $password = "";
-// $db_name = "guessbot";
 
 $conn = mysqli_connect($servername, $username, $password, $db_name);
 mysqli_set_charset($conn, "utf8");

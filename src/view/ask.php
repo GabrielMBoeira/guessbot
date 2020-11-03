@@ -15,7 +15,7 @@ require_once('src/db/connection.php');
             <form id="form1">
                 <div class="form-group">
                     <label for="question" class="label-question">O que você gostaria de saber?</label>
-                    <input type="text" class="form-control input-question" id="question1" name="question1"/>
+                    <input type="text" class="form-control input-question" id="question1" name="question1" autocomplete="off"/>
                 </div>
                 <div class="form-group">
                     <label for="question" class="label-answer">Resposta:</label>

@@ -44,6 +44,8 @@ $(document).ready(function () {
             dataType: 'json'
         }).done(function (result) {
             console.log(result)
+            $('#answer2').val('');
+
         });
     });
 });
@@ -63,7 +65,7 @@ function getAnswer() {
     });
 }
 
-
+//MONITORANDO PERGUNTAS E RESPOSTAS DE 1s EM 1s.
 setInterval(() => {
     getQuestion();
     getAnswer();

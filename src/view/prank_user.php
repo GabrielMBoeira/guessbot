@@ -19,7 +19,7 @@ require_once('template/header.php');
                 </div>
                 <div class="form-group">
                     <label for="question form-control" class="label-answer">Resposta:</label>
-                    <input type="text" class="form-control" id="answer2" name="answer2" />
+                    <input type="text" class="form-control" id="answer2" name="answer2" autocomplete="off"/>
                     <div class="button d-flex justify-content-end mt-2">
                         <button class="btn btn-danger mt-1" id=" submit" name="env-answer">Responder</button>
                     </div>
