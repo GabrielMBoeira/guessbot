@@ -1,9 +1,15 @@
 <?php
-require_once('env.php');
 
-$conn = mysqli_connect($servername, $username, $password, $db_name);
-mysqli_set_charset($conn, "utf8");
+function novaConexao($banco = 'guessbot') {
+    $servidor = '127.0.0.1:3306';
+    $usuario = 'root';
+    $senha = '';
 
-if (mysqli_connect_error($conn)) {
-    echo "Erro na conexao ".mysqli_connect_error();
+    $conn = new mysqli($servidor, $usuario, $senha, $banco);
+
+    if($conn->connect_error) {
+        die('Erro: ' . $conn->connect_error);
+    }
+
+    return $conn;
 }

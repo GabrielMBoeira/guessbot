@@ -1,20 +1,29 @@
 <?php
 
-require_once('src/db/connection.php');
-require_once('src/config/clear_input.php');
+require_once('src/db/Connection.php');
 
 header('Content-Type: application/json');
 
-$input_answer = $_POST['answer'];
-
-$answer = clear($input_answer);
+$answer = $_POST['answer'];
 
 $sql = "INSERT INTO question (question, user, prank_user, answer, status) 
-    VALUES ('Aguardando Pergunta...', 'user', 'prank_user', '$answer', 'status')";
+    VALUES (?, ?, ?, ?, ?)";
 
-$result = mysqli_query($conn, $sql);
+$conn = novaConexao();
 
-if ($result) {
+$stmt = $conn->prepare($sql);
+
+$params = [
+    $question = 'Aguardando pergunta',
+    $user = 'user',
+    $prank_user = 'prank_user',
+    $answer,
+    $status = 'status'
+];
+
+$stmt->bind_param('sssss', ...$params);
+
+if ($stmt->execute()) {
     echo json_encode('Salvo com sucesso');
 } else {
     echo json_encode('Falha ao salvar');

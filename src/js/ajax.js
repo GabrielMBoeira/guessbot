@@ -23,6 +23,8 @@ function getQuestion() {
         method: 'GET',
         dataType: 'json'
     }).done(function (result) {
+
+        // console.log(result)
         for (var i = 0; i < result.length; i++) {
             $('#question2').html(result[i].question);
         }
@@ -59,6 +61,8 @@ function getAnswer() {
         method: 'GET',
         dataType: 'json'
     }).done(function (result) {
+
+        // console.log(result)
         for (var i = 0; i < result.length; i++) {
             $('#answer1').html(result[i].answer);
         }

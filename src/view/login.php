@@ -1,3 +1,21 @@
+<?php
+require_once('src/config/functions.php');
+
+if (isset($_POST['login'])) {
+
+   $dados = $_POST;
+
+   $email = clear($dados['email']);
+   $password = clear($dados['password']);
+
+   if (validUser($conn, $email, $password)) {
+      header('Location: ask');
+   }
+}
+
+
+?>
+
 <!DOCTYPE html>
 <html lang="pt-br">
 
@@ -32,23 +50,29 @@
          <div class="container-fluid">
             <div class="row row-form">
                <form class="form" action="#" method="post">
+                  <?php
+                  if (isset($_SESSION['erro-login'])) {
+                     print_r($_SESSION['erro-login']);
+                     unset($_SESSION['erro-login']);
+                  }
+                  ?>
                   <div class="form-group">
                      <label class="label" for="email">
                         E-mail:
                      </label>
-                     <input type="text" class="form-control" id="email" />
+                     <input type="email" class="form-control" id="email" name="email" required/>
                   </div>
                   <div class="form-group">
                      <label class="label" for="password">
                         Senha:
                      </label>
-                     <input type="password" class="form-control" id="password" />
+                     <input type="password" class="form-control" id="password" name="password" required/>
                   </div>
                   <div class="div-button">
-                     <a type="submit" href="ask" class="btn btn-primary mt-4">
+                     <button type="submit" class="btn btn-primary mt-4" name="login">
                         Entrar
-                     </a>
-                     <a type="submit" href="password_forgot" class="btn btn-success mt-4">
+                     </button>
+                     <a type="submit" href="password_forgot" class="btn btn-success mt-4" name="password_forgo">
                         Esqueci a senha
                      </a>
                   </div>

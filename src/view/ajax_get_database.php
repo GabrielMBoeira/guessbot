@@ -1,19 +1,15 @@
 <?php
 
-header('Content-Type: application/json');
-
-require_once('src/db/connection.php');
+require_once('src/db/Connection.php');
 
 $sql = "SELECT * FROM question";
 
-$result = mysqli_query($conn, $sql);
+$conn = novaConexao();
+
+$result = $conn->query($sql);
 
 if ($result->num_rows > 0) {
-    while($dados = mysqli_fetch_all($result, MYSQLI_ASSOC)) {
-        echo json_encode($dados);
-    }
-    
+    echo json_encode($result->fetch_all(MYSQLI_ASSOC));
 } else {
-    echo json_encode('Erro o retornar dados!');
+    echo json_encode('Erro na consulta do banco de dados');
 }
-
