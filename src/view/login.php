@@ -1,6 +1,8 @@
 <?php
 require_once('src/config/functions.php');
 
+$dados['email'] = null;
+
 if (isset($_POST['login'])) {
 
    $dados = $_POST;
@@ -8,12 +10,10 @@ if (isset($_POST['login'])) {
    $email = htmlspecialchars($dados['email']);
    $password = htmlspecialchars($dados['password']);
 
-   $dados = validUser($email, $password);
-
-   var_dump($dados);
-
+   if (validUser($email, $password)) {
+      header('Location: ask');
+   } 
 }
-
 
 ?>
 
@@ -50,24 +50,24 @@ if (isset($_POST['login'])) {
       <div class="div-content">
          <div class="container-fluid">
             <div class="row row-form">
-               <form class="form" action="#" method="post">
+               <form class="form" action="login" method="post">
                   <?php
-                  if (isset($_SESSION['erro-login'])) {
-                     print_r($_SESSION['erro-login']);
-                     unset($_SESSION['erro-login']);
+                  if (isset($_SESSION['error-login'])) {
+                     print_r($_SESSION['error-login']);
+                     unset($_SESSION['error-login']);
                   }
                   ?>
                   <div class="form-group">
                      <label class="label" for="email">
                         E-mail:
                      </label>
-                     <input type="email" class="form-control" id="email" name="email" required/>
+                     <input type="email" class="form-control" id="email" name="email" required value="<?= $dados['email'] ?>" />
                   </div>
                   <div class="form-group">
                      <label class="label" for="password">
                         Senha:
                      </label>
-                     <input type="password" class="form-control" id="password" name="password" required/>
+                     <input type="password" class="form-control" id="password" name="password" required />
                   </div>
                   <div class="div-button">
                      <button type="submit" class="btn btn-primary mt-4" name="login">

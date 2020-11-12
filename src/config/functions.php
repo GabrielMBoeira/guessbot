@@ -49,9 +49,22 @@ function validUser($email, $password)
 
     if ($result->num_rows > 0) {
         $dados = $result->fetch_assoc();
+
+        $password_hash = password_verify($password, $dados['password']);
+        $status_login = $dados['status_login'];
+        
+
+        if ($password_hash && $status_login === 'active') {
+            $_SESSION['user'] = $dados['id_user'];
+            $dados = true;
+        } else {
+            $_SESSION['error-login'] = '<div class="alert alert-danger" role="alert">Senha ou e-mail inválido!</div>';
+            $dados = false;
+        }
+        return $dados;
     } else {
-        $dados = 'Não há registro desta conta no banco de dados ou conta não autorizada';
+        $_SESSION['error-login'] = '<div class="alert alert-danger" role="alert">Email não cadastrado!</div>';
     }
 
-    return $dados;
+    $conn->close();
 }
