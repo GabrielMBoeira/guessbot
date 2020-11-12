@@ -5,12 +5,13 @@ if (isset($_POST['login'])) {
 
    $dados = $_POST;
 
-   $email = clear($dados['email']);
-   $password = clear($dados['password']);
+   $email = htmlspecialchars($dados['email']);
+   $password = htmlspecialchars($dados['password']);
 
-   if (validUser($conn, $email, $password)) {
-      header('Location: ask');
-   }
+   $dados = validUser($email, $password);
+
+   var_dump($dados);
+
 }
 
 

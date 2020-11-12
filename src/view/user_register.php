@@ -1,6 +1,5 @@
 <?php
 require_once('src/db/connection.php');
-require_once('src/config/clear_input.php');
 require_once('src/config/functions.php');
 
 
@@ -11,34 +10,39 @@ $dados['password-confirm'] = null;
 
 if (isset($_POST['user_register'])) {
 
+
     $dados = $_POST;
 
-    $email = $dados['email'];
-    $password = $dados['password'];
-    $password_confirm = $dados['password-confirm'];
+    $email = htmlspecialchars($dados['email']);
+    $password = htmlspecialchars($dados['password']);
+    $password_confirm = htmlspecialchars($dados['password-confirm']);
 
 
-    $passwordHash = password_hash($password, PASSWORD_DEFAULT);
+    if (!existEmail($email) && checkPassword($password, $password_confirm)) {
+        $passwordHash = password_hash($password, PASSWORD_DEFAULT);
 
-    $sql = "INSERT INTO login (email, password, status_login) VALUES (?, ?, ?)";
+        $sql = "INSERT INTO login (email, password, status_login) VALUES (?, ?, ?)";
 
-    $conn = novaConexao();
+        $conn = novaConexao();
 
-    $stmt = $conn->prepare($sql);
+        $stmt = $conn->prepare($sql);
 
-    $params = [
-        $email,
-        $passwordHash,
-        $status_login = 'active'
-    ];
+        $params = [
+            $email,
+            $passwordHash,
+            $status_login = 'active'
+        ];
 
-    $stmt->bind_param('sss', ...$params);
+        $stmt->bind_param('sss', ...$params);
 
-    if ($stmt->execute()) {
-        echo 'ok';
+        if ($stmt->execute()) {
+            $_SESSION['msg'] = '<div class="alert alert-success" role="alert">Email cadastrado com sucesso! <a href="login" class="alert-link">Ir para Login!</a></div>';
+        }
+
+        $conn->close();
+    } else {
+        $_SESSION['msg']= '<div class="alert alert-danger" role="alert">Senhas não conferem ou e-mail já foi cadastrado!</div>';
     }
-
-    $conn->close();
 }
 
 ?>

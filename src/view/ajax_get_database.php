@@ -1,6 +1,7 @@
 <?php
 
 require_once('src/db/Connection.php');
+require_once(dirname(__FILE__,2) . '/db/Connection.php');
 
 $sql = "SELECT * FROM question";
 
