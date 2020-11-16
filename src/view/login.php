@@ -5,14 +5,21 @@ $dados['email'] = null;
 
 if (isset($_POST['login'])) {
 
+   $conn = novaConexao();
+
    $dados = $_POST;
 
    $email = htmlspecialchars($dados['email']);
    $password = htmlspecialchars($dados['password']);
 
+   $email = mysqli_real_escape_string($conn, $email);
+   $password = mysqli_real_escape_string($conn, $password);
+
    if (validUser($email, $password)) {
-      header('Location: ask');
+      header('Location: ask'); 
    } 
+
+   $conn->close();
 }
 
 ?>

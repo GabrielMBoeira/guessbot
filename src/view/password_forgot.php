@@ -1,4 +1,35 @@
 <?php
+require_once('src/config/functions.php');
+
+if (isset($_POST['password_forgot'])) {
+
+    $conn = novaConexao();
+
+    $email = htmlspecialchars($_POST['email']);
+    $email = mysqli_real_escape_string($conn, $email);
+
+    if (existEmail($email)) {
+
+        $crypt_password = substr(md5(time()), 0, 8);
+        $new_password = md5(md5($crypt_password));
+
+        $sql = "UPDATE login SET password = ? WHERE email = ?";
+
+        $stmt = $conn->prepare($sql);
+
+        $stmt->bind_param('ss', $new_password, $email);
+
+        if ($stmt->execute()) {
+            $_SESSION['error-forgot'] =  '<div class="alert alert-success" role="alert">Senha enviada por email!</div>';
+        } else {
+            $_SESSION['error-forgot'] = '<div class="alert alert-danger" role="alert">Erro ao solicitar senha!</div>';
+        }
+    } else {
+        $_SESSION['error-forgot'] = '<div class="alert alert-danger" role="alert">Email não cadastrado!</div>';
+    }
+
+    $conn->close();
+}
 
 ?>
 
@@ -34,7 +65,13 @@
         <div class="div-content">
             <div class="container-fluid">
                 <div class="row row-form">
-                    <form class="form" action="#" method="post">
+                    <form class="form" action="password_forgot" method="post">
+                        <?php
+                        if (isset($_SESSION['error-forgot'])) {
+                            print_r($_SESSION['error-forgot']);
+                            unset($_SESSION['error-forgot']);
+                        }
+                        ?>
                         <div class="form-group title-recovery">
                             <label class="label">
                                 RECUPERAÇÃO DE SENHA
@@ -44,12 +81,12 @@
                             <label class="label" for="email">
                                 E-mail:
                             </label>
-                            <input type="text" class="form-control" id="email" autocomplete="off"/>
+                            <input type="email" class="form-control" name="email" autocomplete="off" required />
                         </div>
                         <div class="div-button">
-                            <a type="submit" href="#" class="btn btn-primary mt-4">
+                            <button type="submit" class="btn btn-primary mt-4" name="password_forgot">
                                 Enviar solicitação
-                            </a>
+                            </button>
                         </div>
                     </form>
                 </div>
