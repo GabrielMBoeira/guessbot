@@ -1,5 +1,6 @@
 <?php
 require_once('src/config/functions.php');
+require_once('src/PHPmailer/actionsEmails/sendForgotEmail.php');
 
 if (isset($_POST['password_forgot'])) {
 
@@ -7,25 +8,19 @@ if (isset($_POST['password_forgot'])) {
 
     $email = htmlspecialchars($_POST['email']);
     $email = mysqli_real_escape_string($conn, $email);
+    $email = strtolower($email);
 
     if (existEmail($email)) {
 
-        $crypt_password = substr(md5(time()), 0, 8);
-        $new_password = md5(md5($crypt_password));
+        $hash = newKeyAccess($email);
 
-        $sql = "UPDATE login SET password = ? WHERE email = ?";
+        $_SESSION['msg-forgot'] = '<div class="alert alert-success" role="alert">Senha enviada por email!</div>';
 
-        $stmt = $conn->prepare($sql);
+        //ENVIANDO EMAIL PARA RECUPERAÇÃO DE SENHA
+        sendForgotEmail($email, $hash);
 
-        $stmt->bind_param('ss', $new_password, $email);
-
-        if ($stmt->execute()) {
-            $_SESSION['error-forgot'] =  '<div class="alert alert-success" role="alert">Senha enviada por email!</div>';
-        } else {
-            $_SESSION['error-forgot'] = '<div class="alert alert-danger" role="alert">Erro ao solicitar senha!</div>';
-        }
     } else {
-        $_SESSION['error-forgot'] = '<div class="alert alert-danger" role="alert">Email não cadastrado!</div>';
+        $_SESSION['msg-forgot'] = '<div class="alert alert-danger" role="alert">Email não cadastrado!</div>';
     }
 
     $conn->close();
@@ -67,9 +62,9 @@ if (isset($_POST['password_forgot'])) {
                 <div class="row row-form">
                     <form class="form" action="password_forgot" method="post">
                         <?php
-                        if (isset($_SESSION['error-forgot'])) {
-                            print_r($_SESSION['error-forgot']);
-                            unset($_SESSION['error-forgot']);
+                        if (isset($_SESSION['msg-forgot'])) {
+                            print_r($_SESSION['msg-forgot']);
+                            unset($_SESSION['msg-forgot']);
                         }
                         ?>
                         <div class="form-group title-recovery">

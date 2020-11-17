@@ -52,7 +52,7 @@ function validUser($email, $password)
 
         $password_hash = password_verify($password, $dados['password']);
         $status_login = $dados['status_login'];
-        
+
 
         if ($password_hash && $status_login === 'active') {
             $_SESSION['user'] = $dados['id_user'];
@@ -69,6 +69,48 @@ function validUser($email, $password)
     $conn->close();
 }
 
+//GERAR CHAVE DE ACESSO PARA RECUPERAÇÃO DE SENHA
+function newKeyAccess($email)
+{
+
+    $conn = novaConexao();
+
+    $sql = "SELECT id_user, password FROM login WHERE email = '$email'";
+
+    $result = $conn->query($sql);
+
+    if ($result->num_rows > 0) {
+        $dados = $result->fetch_assoc();
+
+        $key = sha1($dados['id_user'] . $dados['password']);
+    }
+    return $key;
+
+    $conn->close();
+}
+
+//GERAR CHAVE DE ACESSO PARA RECUPERAÇÃO DE SENHA
+function checkKey($email, $key)
+{
+
+    $conn = novaConexao();
+
+    $sql = "SELECT id_user, password FROM login WHERE email = '$email'";
+
+    $result = $conn->query($sql);
+
+    if ($result->num_rows > 0) {
+        $dados = $result->fetch_assoc();
+
+        $keyCorrect = sha1($dados['id_user'] . $dados['password']);
+
+        if ($key === $keyCorrect) {
+            return $dados['id_user'];
+        } else {
+            $_SESSION['msg'] = '<div class="alert alert-danger" role="alert">Usuário não encontrado!</div>';
+        }
+    }
 
 
-
+    $conn->close();
+}

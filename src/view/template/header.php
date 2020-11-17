@@ -16,7 +16,7 @@
 <body class="body">
   <header class="header">
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-      <a class="navbar-brand" href="ask">Guessbot</a>
+      <a class="navbar-brand" href="login">Guessbot</a>
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#content-nav" aria-controls="content-nav" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
