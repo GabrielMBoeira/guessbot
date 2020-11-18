@@ -1,12 +1,11 @@
 main.main .div-content {
-    max-height: 400px;
+    max-height: 600px;
     min-width: 55%;
     padding: 15px;
     background-color: rgba(0, 0, 0, 0.4);
     border-radius: 10px;
   }
 
-  
   
   main.main .form {
     width: 100%;

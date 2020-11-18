@@ -16,7 +16,8 @@ if (isset($_POST['login'])) {
    $password = mysqli_real_escape_string($conn, $password);
 
    if (validUser($email, $password)) {
-      header('Location: ask'); 
+      header('Location: ask');
+      
    } 
 
    $conn->close();
@@ -38,7 +39,7 @@ if (isset($_POST['login'])) {
 <body class="body">
    <header class="header">
       <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-         <a class="navbar-brand" href="#">Guessbot</a>
+         <a class="navbar-brand" href="login">Guessbot</a>
          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#content-nav" aria-controls="content-nav" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
          </button>

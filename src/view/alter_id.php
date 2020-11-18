@@ -1,5 +1,6 @@
 <?php
 require_once('template/header.php');
+
 ?>
 
 <link rel="stylesheet" href="src/assets/css/alter_id.css" />
@@ -8,22 +9,29 @@ require_once('template/header.php');
     <div class="div-content">
         <div class="container-fluid">
             <div class="row">
-                <form class="form" action="#" method="post">
+                <form class="form" action="action" method="post">
+                    <input type="hidden" name="email" value="<?php echo $email ?>">
                     <div class="header-form">
                         <label>
                             Gerar novo ID:
                         </label>
                     </div>
+                    <?php
+                        if (isset($_SESSION['alter-id'])) {
+                            print_r($_SESSION['alter-id']);
+                            unset($_SESSION['alter-id']);
+                        }
+                    ?>
                     <div class="form-group">
                         <label class="label" for="id_prank">
-                            Num. ID:
+                            Inserir novo ID prank user:
                         </label>
-                        <input type="text" class="form-control" id="id_prank" readonly />
+                        <input type="text" class="form-control" name="id_prank_user"/>
                     </div>
                     <div class="div-button">
-                        <a type="submit" class="btn btn-primary mt-2" href="#">
-                            Gerar ID
-                        </a>
+                        <button type="submit" class="btn btn-primary mt-2" name="save_alter_id">
+                            Salvar
+                        </button>
                     </div>
                 </form>
             </div>

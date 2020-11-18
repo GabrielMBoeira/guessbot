@@ -16,12 +16,13 @@ if (isset($_POST['user_register'])) {
     $email = htmlspecialchars($dados['email']);
     $password = htmlspecialchars($dados['password']);
     $password_confirm = htmlspecialchars($dados['password-confirm']);
+    $id_prank_user = htmlspecialchars($dados['id_prank_user']);
 
 
     if (!existEmail($email) && checkPassword($password, $password_confirm)) {
         $passwordHash = password_hash($password, PASSWORD_DEFAULT);
 
-        $sql = "INSERT INTO login (email, password, status_login) VALUES (?, ?, ?)";
+        $sql = "INSERT INTO login (email, password, status_login, id_prank_user) VALUES (?, ?, ?, ?)";
 
         $conn = novaConexao();
 
@@ -30,10 +31,11 @@ if (isset($_POST['user_register'])) {
         $params = [
             $email,
             $passwordHash,
-            $status_login = 'active'
+            $status_login = 'active',
+            $id_prank_user
         ];
 
-        $stmt->bind_param('sss', ...$params);
+        $stmt->bind_param('ssss', ...$params);
 
         if ($stmt->execute()) {
             $_SESSION['msg'] = '<div class="alert alert-success" role="alert">Email cadastrado com sucesso! <a href="login" class="alert-link">Ir para Login!</a></div>';
@@ -69,14 +71,6 @@ if (isset($_POST['user_register'])) {
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#content-nav" aria-controls="content-nav" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
-
-            <div class="collapse navbar-collapse" id="content-nav">
-                <ul class="navbar-nav mr-auto">
-                    <li class="nav-item active">
-                        <a class="nav-link" href="#">Configurações</a>
-                    </li>
-                </ul>
-            </div>
         </nav>
     </header>
 
@@ -115,6 +109,12 @@ if (isset($_POST['user_register'])) {
                                 Confirme sua senha
                             </label>
                             <input type="password" class="form-control" id="password-confirm" name="password-confirm" required />
+                        </div>
+                        <div class="form-group">
+                            <label class="label" for="password-confirm">
+                                Cadastrar ID Usuário chave:
+                            </label>
+                            <input type="text" class="form-control" id="password-confirm" name="id_prank_user" required />
                         </div>
                         <div class="div-button">
                             <button type="submit" class="btn btn-primary mt-1" name="user_register">

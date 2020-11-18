@@ -1,5 +1,5 @@
 main.main .div-content {
-  height: 250px;
+  min-height: 280px;
   width: 500px;
   padding: 15px;
   background-color: rgba(0, 0, 0, 0.4);

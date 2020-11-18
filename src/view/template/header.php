@@ -1,3 +1,14 @@
+<?php
+require_once('src/config/functions.php');
+
+//NÃO MEXER POIS ESTES DADOS ALIMENTAM O SISTEMA
+$email = 'gabrielmboeira@gmail.com';
+
+$id_prank_user = getIdPrankUser($email);
+
+
+?>
+
 <!DOCTYPE html>
 <html lang="pt-br">
 
@@ -34,7 +45,7 @@
             <a class="nav-link" href="#">Sair</a>
           </li>
         </ul>
-        <a class="link-id mr-5" href="alter_id">ID: 123456789123456</a>
+        <a class="link-id mr-5" href="alter_id">ID Usuário chave:  <?= $id_prank_user ?></a>
       </div>
     </nav>
   </header>

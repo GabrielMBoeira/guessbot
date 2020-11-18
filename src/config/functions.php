@@ -110,7 +110,40 @@ function checkKey($email, $key)
             $_SESSION['msg'] = '<div class="alert alert-danger" role="alert">Usuário não encontrado!</div>';
         }
     }
-
-
     $conn->close();
+}
+
+function getIdPrankUser($email)
+{
+
+    $conn = novaConexao();
+
+    $email = mysqli_real_escape_string($conn, $email);
+
+    $sql = "SELECT id_prank_user FROM login WHERE email = ?";
+
+    $stmt = $conn->prepare($sql);
+    $stmt->bind_param('s', $email);
+    $stmt->execute();
+    $result = $stmt->get_result();
+
+    if ($result->num_rows > 0) {
+        $row = $result->fetch_array(MYSQLI_ASSOC);
+        $id_prank_user = $row['id_prank_user'];
+        return $id_prank_user;
+    } else {
+        echo 'Não há retorno de ID do banco de dados';
+    }
+}
+
+function checkIdPrankUser($id_prank_user, $id)
+{
+
+    if ($id_prank_user === $id) {
+        $check = true;
+    } else {
+        $check = false;
+    }
+
+    return $check;
 }
