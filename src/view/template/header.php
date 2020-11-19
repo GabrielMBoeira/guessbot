@@ -7,7 +7,6 @@ $id_prank_user = getIdPrankUser($email);
 $hash = hashEmailIdPrankUser($email);
 $id_user = getPKUser($email);
 
-
 ?>
 
 <!DOCTYPE html>

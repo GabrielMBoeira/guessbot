@@ -3,6 +3,12 @@ require_once('template/header.php');
 require_once('src/db/connection.php');
 
 if (isset($_SESSION['email'])) {
+    
+$email = $_SESSION['email'];
+
+//LIMITANDO O NUMERO DE PERGUNTAS POR USUARIO   
+countQuestions($email) <= 3 ?: header('Location: buy');
+
 ?>
 
     <link rel="stylesheet" href="src/assets/css/ask.css" />

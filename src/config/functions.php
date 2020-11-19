@@ -134,6 +134,7 @@ function getIdPrankUser($email)
     } else {
         echo 'Não há retorno de ID do banco de dados = getIdPrankUser';
     }
+    $conn->close();
 }
 
 function checkIdPrankUser($id_prank_user, $id)
@@ -171,24 +172,24 @@ function hashEmailIdPrankUser($email)
         $hash = sha1($email . $id_prank_user);
 
         return $hash;
-        
     } else {
         echo 'Não há retorno de ID do banco de dados = hashEmailIdPrankUser';
     }
+    $conn->close();
 }
 
 //Pegar o ID do usuário
-function getPKUser($email)
+function getPKUser($e_mail)
 {
 
     $conn = novaConexao();
 
-    $email = mysqli_real_escape_string($conn, $email);
+    $email = mysqli_real_escape_string($conn, $e_mail);
 
     $sql = "SELECT id_user FROM login WHERE email = ?";
 
     $stmt = $conn->prepare($sql);
-    $stmt->bind_param('i', $email);
+    $stmt->bind_param('s', $e_mail);
     $stmt->execute();
     $result = $stmt->get_result();
 
@@ -199,6 +200,7 @@ function getPKUser($email)
     } else {
         echo 'Não há retorno de ID do usuário do banco de dados = getPKUSER';
     }
+    $conn->close();
 }
 
 function getEmailUser($idPKuser)
@@ -221,8 +223,8 @@ function getEmailUser($idPKuser)
         return $email;
     } else {
         $_SESSION['confirm-id_prank_user'] =  '<div class="alert alert-danger" role="alert">Não há retorno de ID do usuário do banco de dados = getEmailUser</div>';
-        
     }
+    $conn->close();
 }
 
 //VERIFICANDO HASH ID_PRANK_USER
@@ -248,15 +250,35 @@ function hashVerify($id_user, $hash_link, $input)
 
         $hash = sha1($email . $id_prank_user);
 
-        if ($hash === $hash_link && $input ===$id_prank_user) {
+        if ($hash === $hash_link && $input === $id_prank_user) {
             return true;
         } else {
             return false;
         }
-        
     } else {
         return false;
     }
+    $conn->close();
 }
 
+//CONTAR QUANTAS QUESTÕES FORAM FEITAS
+function countQuestions($email)
+{
+    $conn = novaConexao();
 
+    $email = mysqli_real_escape_string($conn, $email);
+
+    $sql = "SELECT SUM(counter) as total FROM question WHERE user = ?";
+    $stmt = $conn->prepare($sql);
+    $stmt->bind_param('s', $email);
+    $stmt->execute();
+
+    $result = $stmt->get_Result();
+
+    if ($result->num_rows > 0) {
+        $row = $result->fetch_assoc();
+        $totalQuestion = $row['total'];
+
+        return $totalQuestion;
+    }
+}
