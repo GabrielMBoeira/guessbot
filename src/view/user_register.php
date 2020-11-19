@@ -2,7 +2,6 @@
 require_once('src/db/connection.php');
 require_once('src/config/functions.php');
 
-
 $dados['email'] = null;
 $dados['password'] = null;
 $dados['password-confirm'] = null;
@@ -43,7 +42,7 @@ if (isset($_POST['user_register'])) {
 
         $conn->close();
     } else {
-        $_SESSION['msg']= '<div class="alert alert-danger" role="alert">Senhas não conferem ou e-mail já foi cadastrado!</div>';
+        $_SESSION['msg'] = '<div class="alert alert-danger" role="alert">Senhas não conferem ou e-mail já foi cadastrado!</div>';
     }
 }
 

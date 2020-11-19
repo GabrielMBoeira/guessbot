@@ -1,7 +1,10 @@
 <?php
-require_once('template/header.php');
+require_once('src/config/functions.php');
 
-?>
+if (isset($_SESSION['email'])) {
+
+require_once('template/header_prank.php');
+?>  
 
 <link rel="stylesheet" href="src/assets/css/prank_user.css" />
 
@@ -33,4 +36,7 @@ require_once('template/header.php');
 
 <?php
 require_once('template/footer.php');
+} else {
+    header('Location: login');
+}
 ?>

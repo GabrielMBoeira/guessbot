@@ -147,3 +147,33 @@ function checkIdPrankUser($id_prank_user, $id)
 
     return $check;
 }
+
+//HASH EMAIL + IDPRANKUSER
+function hashEmailIdPrankUser($email)
+{
+
+    $conn = novaConexao();
+
+    $email = mysqli_real_escape_string($conn, $email);
+
+    $sql = "SELECT email, id_prank_user FROM login WHERE email = ?";
+
+    $stmt = $conn->prepare($sql);
+    $stmt->bind_param('s', $email);
+    $stmt->execute();
+    $result = $stmt->get_result();
+
+    if ($result->num_rows > 0) {
+        $row = $result->fetch_array(MYSQLI_ASSOC);
+        $email = $row['email'];
+        $id_prank_user = $row['id_prank_user'];
+
+        $hash = sha1($email . $id_prank_user);
+
+        return $hash;
+        
+    } else {
+        echo 'Não há retorno de ID do banco de dados';
+    }
+}
+

@@ -16,6 +16,7 @@ if (isset($_POST['login'])) {
    $password = mysqli_real_escape_string($conn, $password);
 
    if (validUser($email, $password)) {
+      $_SESSION['email'] = $email;
       header('Location: ask');
       
    } 
