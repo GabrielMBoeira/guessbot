@@ -132,7 +132,7 @@ function getIdPrankUser($email)
         $id_prank_user = $row['id_prank_user'];
         return $id_prank_user;
     } else {
-        echo 'Não há retorno de ID do banco de dados';
+        echo 'Não há retorno de ID do banco de dados = getIdPrankUser';
     }
 }
 
@@ -173,7 +173,90 @@ function hashEmailIdPrankUser($email)
         return $hash;
         
     } else {
-        echo 'Não há retorno de ID do banco de dados';
+        echo 'Não há retorno de ID do banco de dados = hashEmailIdPrankUser';
     }
 }
+
+//Pegar o ID do usuário
+function getPKUser($email)
+{
+
+    $conn = novaConexao();
+
+    $email = mysqli_real_escape_string($conn, $email);
+
+    $sql = "SELECT id_user FROM login WHERE email = ?";
+
+    $stmt = $conn->prepare($sql);
+    $stmt->bind_param('i', $email);
+    $stmt->execute();
+    $result = $stmt->get_result();
+
+    if ($result->num_rows > 0) {
+        $row = $result->fetch_array(MYSQLI_ASSOC);
+        $id_user = $row['id_user'];
+        return $id_user;
+    } else {
+        echo 'Não há retorno de ID do usuário do banco de dados = getPKUSER';
+    }
+}
+
+function getEmailUser($idPKuser)
+{
+
+    $conn = novaConexao();
+
+    $idPKuser = mysqli_real_escape_string($conn, $idPKuser);
+
+    $sql = "SELECT email FROM login WHERE id_user = ?";
+
+    $stmt = $conn->prepare($sql);
+    $stmt->bind_param('i', $idPKuser);
+    $stmt->execute();
+    $result = $stmt->get_result();
+
+    if ($result->num_rows > 0) {
+        $row = $result->fetch_array(MYSQLI_ASSOC);
+        $email = $row['email'];
+        return $email;
+    } else {
+        $_SESSION['confirm-id_prank_user'] =  '<div class="alert alert-danger" role="alert">Não há retorno de ID do usuário do banco de dados = getEmailUser</div>';
+        
+    }
+}
+
+//VERIFICANDO HASH ID_PRANK_USER
+function hashVerify($id_user, $hash_link, $input)
+{
+
+    $conn = novaConexao();
+
+    $id_user = mysqli_real_escape_string($conn, $id_user);
+    $hash_link = mysqli_real_escape_string($conn, $hash_link);
+
+    $sql = "SELECT email, id_prank_user FROM login WHERE id_user = ?";
+
+    $stmt = $conn->prepare($sql);
+    $stmt->bind_param('i', $id_user);
+    $stmt->execute();
+    $result = $stmt->get_result();
+
+    if ($result->num_rows > 0) {
+        $row = $result->fetch_array(MYSQLI_ASSOC);
+        $email = $row['email'];
+        $id_prank_user = $row['id_prank_user'];
+
+        $hash = sha1($email . $id_prank_user);
+
+        if ($hash === $hash_link && $input ===$id_prank_user) {
+            return true;
+        } else {
+            return false;
+        }
+        
+    } else {
+        return false;
+    }
+}
+
 

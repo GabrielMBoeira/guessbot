@@ -1,12 +1,5 @@
 <?php
 require_once('src/config/functions.php');
-
-//NÃO MEXER POIS ESTES DADOS ALIMENTAM O SISTEMA
-$email = $_SESSION['email'];
-$id_prank_user = getIdPrankUser($email);
-$hash = hashEmailIdPrankUser($email);
-
-
 ?>
 
   <!DOCTYPE html>
@@ -27,7 +20,7 @@ $hash = hashEmailIdPrankUser($email);
   <body class="body">
     <header class="header">
       <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-        <a class="navbar-brand" href="login">Guessbot</a>
+        <a class="navbar-brand" href="login">Login</a>
 
         <div class="collapse navbar-collapse" id="content-nav">
           <ul class="navbar-nav mr-auto">

@@ -1,10 +1,23 @@
 <?php
 require_once('src/config/functions.php');
-
-if (isset($_SESSION['email'])) {
-
 require_once('template/header_prank.php');
-?>  
+
+if (isset($_GET['idcl']) && isset($_GET['key']) && isset($_GET['i'])) {
+
+    $conn = novaConexao();
+
+    $id_user = mysqli_real_escape_string($conn, $_GET['idcl']);
+    $hash_link = mysqli_real_escape_string($conn, $_GET['key']);
+    $input = mysqli_real_escape_string($conn, $_GET['i']);
+
+    hashVerify($id_user, $hash_link, $input) ?: header('location: login');
+    
+    $conn->close();
+} else {
+    header('location: login');
+}
+
+?>
 
 <link rel="stylesheet" href="src/assets/css/prank_user.css" />
 
@@ -22,7 +35,7 @@ require_once('template/header_prank.php');
                 </div>
                 <div class="form-group">
                     <label for="question form-control" class="label-answer">Resposta:</label>
-                    <input type="text" class="form-control" id="answer2" name="answer2" autocomplete="off"/>
+                    <input type="text" class="form-control" id="answer2" name="answer2" autocomplete="off" />
                     <div class="button d-flex justify-content-end mt-2">
                         <button class="btn btn-danger mt-1" id=" submit" name="env-answer">Responder</button>
                     </div>
@@ -36,7 +49,4 @@ require_once('template/header_prank.php');
 
 <?php
 require_once('template/footer.php');
-} else {
-    header('Location: login');
-}
 ?>

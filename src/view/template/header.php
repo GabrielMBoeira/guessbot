@@ -5,6 +5,7 @@ require_once('src/config/functions.php');
 $email = $_SESSION['email'];
 $id_prank_user = getIdPrankUser($email);
 $hash = hashEmailIdPrankUser($email);
+$id_user = getPKUser($email);
 
 
 ?>
@@ -27,7 +28,7 @@ $hash = hashEmailIdPrankUser($email);
   <body class="body">
     <header class="header">
       <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-        <a class="navbar-brand" href="login">Guessbot</a>
+        <a class="navbar-brand" href="ask">Guessbot</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#content-nav" aria-controls="content-nav" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
         </button>
@@ -35,10 +36,10 @@ $hash = hashEmailIdPrankUser($email);
         <div class="collapse navbar-collapse" id="content-nav">
           <ul class="navbar-nav mr-auto">
             <li class="nav-item active">
-              <a class="nav-link" href="#">Configurações</a>
+              <a class="nav-link" href="#">Configuração</a>
             </li>
             <li class="nav-item active">
-              <a class="nav-link" href="id_prank_user?key=<?= $hash ?>">Usuário chave</a>
+              <a class="nav-link" target="_blank" href="id_prank_user?idcl=<?= $id_user ?>&key=<?= $hash ?>">Usuário chave</a> 
             </li>
 
             <li class="nav-item active">

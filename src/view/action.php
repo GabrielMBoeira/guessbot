@@ -80,15 +80,14 @@ if (isset($_POST['check_id_prank_user'])) {
 
     $conn = novaConexao();
 
-    $id_prank_user = mysqli_real_escape_string($conn, $_POST['id_prank_user']);
-    $id = mysqli_real_escape_string($conn, $_POST['id']);
+    $id_user = mysqli_real_escape_string($conn, $_POST['id_user']);
+    $hash_link = mysqli_real_escape_string($conn, $_POST['hash_link']);
+    $input = mysqli_real_escape_string($conn, $_POST['id_input']);
 
-    if (checkIdPrankUser($id_prank_user, $id)) {
-        header('Location: prank_user');
+    if (hashVerify($id_user, $hash_link, $input)) {
+        header('Location: prank_user?idcl=' . $id_user . '&key=' . $hash_link . '&i=' . $input);
     } else {
-        $_SESSION['confirm-id_prank_user'] = '<div class="alert alert-danger" role="alert">ID não está válido!</div>';
-        header('Location: id_prank_user');
+        $_SESSION['confirm-id_prank_user'] = '<div class="alert alert-danger" role="alert">Chave inválida! <a href="login" class="alert-link">Ir para Login!</a></div>';
+        header('Location: id_prank_user?idcl=' . $id_user . '&key=' . $hash_link);
     }
-
-
 }

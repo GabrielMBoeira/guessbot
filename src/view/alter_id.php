@@ -28,7 +28,7 @@ if (isset($_SESSION['email'])) {
                             <label class="label" for="id_prank">
                                 Inserir novo ID prank user:
                             </label>
-                            <input type="text" class="form-control" name="id_prank_user" />
+                            <input type="text" class="form-control" name="id_prank_user" autocomplete="off"/>
                         </div>
                         <div class="div-button">
                             <button type="submit" class="btn btn-primary mt-2" name="save_alter_id">

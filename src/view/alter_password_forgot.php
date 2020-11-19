@@ -32,7 +32,7 @@ if (isset($_GET['key']) && isset($_GET['user'])) {
             <div class="collapse navbar-collapse" id="content-nav">
                 <ul class="navbar-nav mr-auto">
                     <li class="nav-item active">
-                        <a class="nav-link" href="#">Configurações</a>
+                        <!-- Aguardando link -->
                     </li>
                 </ul>
             </div>
