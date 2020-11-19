@@ -56,6 +56,7 @@ if (isset($_POST['user_register'])) {
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" />
     <link rel="stylesheet" href="src/assets/css/template.css" />
+    <link rel="stylesheet" href="src/assets/css/user_register.css" />
     <title>Guessbot</title>
 
     <script src="https://code.jquery.com/jquery-3.5.1.min.js" integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0=" crossorigin="anonymous"></script>
@@ -66,14 +67,9 @@ if (isset($_POST['user_register'])) {
 <body class="body">
     <header class="header">
         <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-            <a class="navbar-brand" href="ask">Guessbot</a>
-            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#content-nav" aria-controls="content-nav" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
+            <a class="navbar-brand" href="login">Login</a>
         </nav>
     </header>
-
-    <link rel="stylesheet" href="src/assets/css/user_register.css" />
 
     <main class="main">
         <div class="div-content">
@@ -115,11 +111,21 @@ if (isset($_POST['user_register'])) {
                             </label>
                             <input type="text" class="form-control" id="password-confirm" name="id_prank_user" required />
                         </div>
+                        <div class="responsability">
+                            <div class="accept">
+                                <input type="checkbox" name="checkbox" required>
+                                Li o termo e estou ciente
+                            </div>
+                            <a href="responsability" target="_blank" class="mt-1 text-white" name="responsability">
+                                Acessar Termo de responsabilidade
+                            </a>
+                        </div>
                         <div class="div-button">
-                            <button type="submit" class="btn btn-primary mt-1" name="user_register">
+                            <button type="submit" class="btn btn-primary mt-2" name="user_register">
                                 Cadastrar
                             </button>
                         </div>
+                        
                     </form>
                 </div>
             </div>

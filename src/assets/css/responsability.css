@@ -1,0 +1,78 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  height: 100vh;
+}
+
+body.body {
+  height: 100%;
+
+  display: flex;
+  flex-direction: column;
+}
+
+
+main.main {
+  background-image: url("../images/robot.jpg");
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+
+  flex-grow: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+main.main .div-content {
+  height: 500px;
+  width: 800px;
+  margin: 10px;
+  border-radius: 10px;
+  background-color: rgba(0, 0, 0, 0.4);
+}
+
+main.main .div-content-header {
+  height: 20%;
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  font-size: 1rem;
+  color: #fff;
+  font-weight: 500;
+}
+
+main.main .title-box {
+  font-size: 1.4rem;
+  font-weight: 600;
+}
+
+main.main .subtitle-box {
+  font-size: 0.9rem;
+  font-weight: 400;
+}
+
+main.main .div-content-body {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 80%;
+  width: 100%;
+  padding: 20px;
+}
+
+footer.footer {
+  height: 40px;
+  background-color: #000;
+}
+  
+  
+  
