@@ -7,7 +7,7 @@ if (isset($_SESSION['email'])) {
 $email = $_SESSION['email'];
 
 //LIMITANDO O NUMERO DE PERGUNTAS POR USUARIO   
-countQuestions($email) <= 3 ?: header('Location: buy');
+countQuestions($email) <= 50 ?: header('Location: buy');
 
 ?>
 

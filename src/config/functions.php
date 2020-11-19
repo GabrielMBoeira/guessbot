@@ -282,3 +282,57 @@ function countQuestions($email)
         return $totalQuestion;
     }
 }
+
+function getLastQuestionUser($email) {
+
+    $conn = novaConexao();
+
+    $email = mysqli_real_escape_string($conn, $email);
+
+    $sql = "SELECT MAX(id_question) as last_id FROM question WHERE user = ?";
+
+    $stmt = $conn->prepare($sql);
+    $stmt->bind_param('i', $email);
+    $stmt->execute();
+    $result = $stmt->get_result();
+
+    if ($result->num_rows > 0) {
+        $row = $result->fetch_assoc();
+        $last_id = $row['last_id'];
+        return $last_id;
+    } else {
+        echo "Erro ao pegar o último id_question user";
+    }
+
+
+}
+
+function logoutSetInput($email)
+{
+
+    $conn = novaConexao();
+
+    $email = mysqli_real_escape_string($conn, $email);
+
+    $last_id = getLastQuestionUser($email);
+
+    $sql = "UPDATE question SET question = ?, answer = ? WHERE id_question = ?";
+
+
+    $stmt = $conn->prepare($sql);
+
+    $params = [
+        $question = 'Aguardando uma pergunta...',
+        $answer = 'Sou o Guessbot, me pergunte algo...',
+        $id_question = $last_id
+
+    ];
+
+    $stmt->bind_param('ssi', ...$params);
+
+    if ($stmt->execute()) {
+        header('location: login');
+    } else {
+        echo 'Erro ao efetuar o logout';
+    }
+}

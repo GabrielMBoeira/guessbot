@@ -109,7 +109,7 @@ if (isset($_POST['user_register'])) {
                             <label class="label" for="password-confirm">
                                 Cadastrar ID Usuário chave:
                             </label>
-                            <input type="text" class="form-control" id="password-confirm" name="id_prank_user" required />
+                            <input type="text" class="form-control" id="password-confirm" name="id_prank_user" autocomplete="off" required />
                         </div>
                         <div class="responsability">
                             <div class="accept">

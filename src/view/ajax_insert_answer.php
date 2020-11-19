@@ -1,6 +1,8 @@
 <?php
-
+session_start();
 require_once('src/db/Connection.php');
+
+$user = $_SESSION['email'];
 
 header('Content-Type: application/json');
 
@@ -15,7 +17,7 @@ $stmt = $conn->prepare($sql);
 
 $params = [
     $question = 'Aguardando pergunta',
-    $user = 'user',
+    $user,
     $prank_user = 'prank_user',
     $answer,
     $status = 'status'

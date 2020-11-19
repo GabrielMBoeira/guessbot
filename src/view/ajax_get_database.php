@@ -1,9 +1,12 @@
 <?php
+session_start();
+
+$user = $_SESSION['email'];
 
 require_once('src/db/Connection.php');
 require_once(dirname(__FILE__,2) . '/db/Connection.php');
 
-$sql = "SELECT * FROM question";
+$sql = "SELECT * FROM question WHERE user = '$user'";
 
 $conn = novaConexao();
 
